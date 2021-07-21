@@ -1,12 +1,8 @@
+
 # NodeGraphView
 
 ## SCREENSHOT
-
+![screenshot_01](https://user-images.githubusercontent.com/86211525/126427109-a394499a-2a7d-4d2e-8b53-7812a3bd2e79.png)
 
 # Info
-Unityエディタ拡張 GraphView機能を用いたノードエディタ学習  
-　  
-### 参考サイト  
-https://qiita.com/ma_sh/items/7627a6151e849f5a0ede
-
-https://light11.hatenadiary.com/entry/2020/06/16/200750
+Unityエディタ拡張 GraphView機能を用いたノードエディタ  
