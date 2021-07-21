@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+>
+
+  <engine:Box style="width: 200px"> <!-- Boxの横幅を200pxに -->
+    <engine:Button text="Example Button"/>
+    <engine:Label text="Example Label" style="color: red"/> <!-- Labelの色を赤に -->
+  </engine:Box>
+
+</engine:UXML>

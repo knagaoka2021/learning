@@ -1,0 +1,25 @@
+﻿/* スタイルクラスを使用*/
+.standard-label {
+    padding: 6px;
+   }
+
+/* 要素名を使用*/
+#the-label {
+    font-size: 60px;
+   }
+
+Label {
+    color: rgb(68, 255, 93);
+   }
+TextField {
+    width: 260px; /* 36文字 */
+}
+.textField-slider{
+    width: 82px; /* 3文字 */
+    font-size: 40px;
+}
+
+.red-label{
+    color: rgb(255, 0, 0);
+    font-size: 25px;
+}

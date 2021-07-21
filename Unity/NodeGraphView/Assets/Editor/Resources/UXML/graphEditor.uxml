@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns:ui="UnityEngine.UIElements">
+  <ui:VisualElement name="UiButtonContainer">
+    <ui:IMGUIContainer name="Dockarea" class="unity-imgui-container" />
+    <ui:VisualElement name="UiButtonArea">
+      <ui:Button text="Save" name="Save" class="button-area" />
+      <ui:Button text="Load" name="Load" class="button-area" />
+      <ui:Button text="Clear" name="Clear" class="button-area" />
+      <ui:Button text="Invoke" name="Invoke" class="button-area" />
+    </ui:VisualElement>
+  </ui:VisualElement>
+</UXML>

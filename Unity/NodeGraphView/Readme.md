@@ -1,8 +1,6 @@
 # NodeGraphView
 
 ## SCREENSHOT
-![image](https://user-images.githubusercontent.com/86211525/126029023-d2e343cf-dada-470c-aef0-833e6d7db6f2.png)
-
 
 
 # Info

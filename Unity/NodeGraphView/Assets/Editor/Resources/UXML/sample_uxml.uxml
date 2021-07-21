@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEngine.Experimental.UIElements">  
+  <Foldout name="foldout">
+    <Button text="ボタン0" />
+    <Button text="ボタン1" />
+    <Button text="ボタン2" />
+    <Button text="ボタン3" />
+    <Button text="ボタン4" />
+    <Button text="ボタン5" />
+    <Button text="ボタン6" />
+    <Button text="ボタン7" />
+    <Button text="ボタン8" />
+    <Button text="ボタン9" />
+  </Foldout>
+</UXML>

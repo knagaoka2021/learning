@@ -1,0 +1,34 @@
+﻿#UiButtonContainer{
+    position: absolute;
+    width: 142px;
+    height: 55px;
+}
+#UiButtonArea{
+    background-image: url("../Image/ui_area.jpg")
+    width: 76px;
+}
+#Save {
+    top: 4px;
+}
+
+#Load {
+    left: 70px;
+    top: -18px;
+}
+
+#Clear {
+    top: -15px;
+}
+
+#Invoke {
+    left: 70px;
+    top: -36px;
+}
+
+.button-area {
+    width: 64px;
+    height: 20px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    background-image: url("../Image/ui_back.jpg")
+}
