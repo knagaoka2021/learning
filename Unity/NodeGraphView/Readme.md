@@ -12,6 +12,10 @@ Unityエディタ拡張 GraphView機能を用いたノードエディタ
 - UnityEditor 開く  
   →Unity上部 Windowタブ→Open NodeGraphView  
   Or 作製したAssetファイルをダブルクリックで開く  
+  ※サンプル  
+    Assets/Editor/Resources/NodeGraph/サンプル用01.asset  
+    Assets/Editor/Resources/NodeGraph/サンプル用02.asset  
+    Assets/Editor/Resources/NodeGraph/サンプル用03.asset  
 - 右クリック  
   - Create Node  
   → SelectorNode,SequenceNode,ActionNodeをクリックでEditor上に作成する  
@@ -28,7 +32,8 @@ Unityエディタ拡張 GraphView機能を用いたノードエディタ
   
 #### UIボタン機能
 - Save  
-  →現在のノードデータをAssetファイルに書き込みしてAssetファイルを作成する
+  →現在のノードデータをAssetファイルに書き込みしてAssetファイルを作成する  
+  `Assets/Editor/Resources/NodeGraph/NodeGraphView_YYYYMMDD_HHMMSS.asset`
 - Load  
   →Assetファイルを読み込んでノードデータを再作成する
 - Clear  
