@@ -24,7 +24,7 @@ Unityエディタ拡張 GraphView機能を用いたノードエディタ
   → ノードをコピーする  
   - Paste  
   → コピーしたノードをEditor上に作成する  
-  - Duplicate  
+  - Disconnect All  
   → ノードに接続されたエッジ(線)を削除する  
   - Delete  
   → ノードを削除する  
