@@ -6,11 +6,10 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CompositeNode : GraphNode {
+public class SelectorNode : CompositeNode {
     private const string ussPath = "Assets/Editor/Resources/USS/CompositeNode.uss";
-    protected IEnumerable<Edge> ie = default;
 
-    public CompositeNode (int id) : base (true, true, Port.Capacity.Single, Port.Capacity.Multi) {
+    public SelectorNode (int id) : base (id) {
 
         // ノードインデックス設定
         textElement = new TextElement ();
@@ -21,40 +20,6 @@ public class CompositeNode : GraphNode {
     }
     public override void Invoke () {
         OnUpdate ();
-    }
-    public override void Reset () {
-        foreach (var edge in this.outputPort.connections) {
-            if (edge != null) {
-                var childNode = edge.input.node as GraphNode;
-                childNode.Reset ();
-            }
-        }
-        this.ResultNodeState = STATE.NONE;
-        this.NodeState = STATE.NONE;
-    }
-    public override void Init () {
-
-        // ノード種別名設定
-        title = "Composite";
-        // ノード種別設定
-        NodeType = NODE.COMPOSITE;
-
-        // Uss読み込み
-        styleSheets.Add (AssetDatabase.LoadAssetAtPath<StyleSheet> (ussPath));
-
-        // ノード注釈設定
-        textField = new TextField ();
-        textField.RegisterCallback<FocusInEvent> (evt => { Input.imeCompositionMode = IMECompositionMode.On; });
-        textField.RegisterCallback<FocusOutEvent> (evt => { Input.imeCompositionMode = IMECompositionMode.Auto; });
-        textField.multiline = true;
-        textField.value = NodeAnnotation;
-        textField.tooltip = "ノード注釈";
-
-        titleButtonContainer.Clear ();
-
-        // 要素をノードに追加
-        ContainerAdd ();
-
     }
     protected override void OnInit () {
         // ノードステータスを実行中に変更
@@ -73,18 +38,25 @@ public class CompositeNode : GraphNode {
         }
 
         // 更新処理
-        var result = STATE.SUCCSESS;
+        var result = STATE.NONE;
         // 振る舞い実行
         foreach (var edge in ie) {
             if (edge != null) {
                 var childNode = edge.input.node as GraphNode;
 
                 // 評価がすでに終了したふるまいはスキップする
-                if (childNode.NodeState == STATE.SUCCSESS ||
-                    childNode.NodeState == STATE.FAILURE) {
+                if (childNode.NodeState == STATE.FAILURE) {
                     continue;
                 }
+
+                // 評価実施
                 childNode.Invoke ();
+
+                // 子ノードのうちどれかが成功を返した場合
+                if (childNode.NodeState == STATE.SUCCSESS) {
+                    result = STATE.SUCCSESS;
+                    break;
+                }
 
                 if (childNode.NodeState == STATE.RUNNING ||
                     childNode.NodeState == STATE.COMPLETE) { return; }
@@ -93,17 +65,41 @@ public class CompositeNode : GraphNode {
         // 成功・失敗評価
         this.ResultNodeState = result;
         this.NodeState = STATE.COMPLETE;
+
     }
     protected override void OnEnd () {
         this.NodeState = this.ResultNodeState;
         Debug.Log (this.textElement.text + "の結果：" + this.NodeState);
+    }
+    public override void Init () {
+
+        // ノード種別名設定
+        title = "Selector";
+        // ノード種別設定
+        NodeType = NODE.SELECTOR;
+
+        // Uss読み込み
+        styleSheets.Add (AssetDatabase.LoadAssetAtPath<StyleSheet> (ussPath));
+
+        // ノード注釈設定
+        textField = new TextField ();
+        textField.RegisterCallback<FocusInEvent> (evt => { Input.imeCompositionMode = IMECompositionMode.On; });
+        textField.RegisterCallback<FocusOutEvent> (evt => { Input.imeCompositionMode = IMECompositionMode.Auto; });
+        textField.multiline = true;
+        textField.value = NodeAnnotation;
+        textField.tooltip = "ノード注釈";
+
+        titleButtonContainer.Clear ();
+
+        // 要素をノードに追加
+        ContainerAdd ();
+
     }
     private void ContainerAdd () {
         // UIフィールドコールバック処理設定
         textField.RegisterCallback<ChangeEvent<string>> ((evt) => {
             NodeAnnotation = evt.newValue;
         });
-
         // 要素をノードに追加
         mainContainer.Add (textField);
         titleButtonContainer.Add (textElement);

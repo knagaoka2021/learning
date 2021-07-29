@@ -21,7 +21,8 @@ public class SearchNodeWindow : ScriptableObject, ISearchWindowProvider {
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies ()) {
             foreach (var type in assembly.GetTypes ()) {
                 if (type.IsClass && !type.IsAbstract && (type.IsSubclassOf (typeof (GraphNode))) &&
-                    type != typeof (RootNode)) {
+                    type != typeof (RootNode) &&
+                    type != typeof (CompositeNode)) {
                     entries.Add (new SearchTreeEntry (new GUIContent (type.Name)) { level = 1, userData = type });
                 }
             }
@@ -39,6 +40,7 @@ public class SearchNodeWindow : ScriptableObject, ISearchWindowProvider {
         var type = searchTreeEntry.userData as System.Type;
         var args = new object[] {graphView.NodeNum};
         var node = Activator.CreateInstance (type,args) as GraphNode;
+        node.Init();
         graphView.NodeNum++;
 
         // スクリーンマウス座標からクライアント座標変換
@@ -46,9 +48,8 @@ public class SearchNodeWindow : ScriptableObject, ISearchWindowProvider {
         var localPosition = ve.ChangeCoordinatesTo (ve.parent, context.screenMousePosition - graphEditorWindow.position.position);
         var clientPosition = this.graphView.contentViewContainer.WorldToLocal (localPosition);
 
-        Rect r = new Rect (clientPosition, Vector2.one * BaseNode.nodeSize);
+        Rect r = new Rect (clientPosition, Vector2.one * GraphNode.nodeSize);
         node.SetPosition (r);
-
         graphView.AddElement (node);
 
         return true;

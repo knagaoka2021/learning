@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEngine.Experimental.UIElements"
+      xmlns:editor="UnityEditor.Experimental.UIElements">
+  <VisualElement name="TimeDetectField">
+      <Label text="====================="></Label>
+      <Foldout text="時間評価" value="false" >
+        <editor:FloatField name = "TIME" label= "待機時間(float)" />
+      </Foldout>
+      <Label text="====================="></Label>
+  </VisualElement>
+</UXML>

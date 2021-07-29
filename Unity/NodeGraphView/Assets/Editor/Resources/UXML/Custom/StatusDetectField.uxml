@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEngine.Experimental.UIElements"
+      xmlns:editor="UnityEditor.Experimental.UIElements">
+  <VisualElement name="StatusDetectField">
+      <Label text="====================="></Label>
+      <Foldout text="ステータス評価" value="false" >
+        <editor:EnumField name = "STATUS" label= "ステータス：" />
+        <editor:FloatField name = "VALUE" label= "判定値：" />
+        <editor:EnumField name = "CALCULATE" label= "判定メソッド：" />
+      </Foldout>
+      <Label text="====================="></Label>
+  </VisualElement>
+</UXML>

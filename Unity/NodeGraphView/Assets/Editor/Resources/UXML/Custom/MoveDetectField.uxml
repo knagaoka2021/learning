@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEngine.Experimental.UIElements"
+      xmlns:editor="UnityEditor.Experimental.UIElements">
+  <VisualElement name="MoveDetectField">
+      <Label text="====================="></Label>
+      <Foldout text="座標移動評価" value="false" >
+        <editor:FloatField name = "DISTANCE" label= "距離(float)" />
+        <editor:EnumField name = "DETECT" label= "判定メソッド" />
+      </Foldout>
+      <Label text="====================="></Label>
+  </VisualElement>
+</UXML>

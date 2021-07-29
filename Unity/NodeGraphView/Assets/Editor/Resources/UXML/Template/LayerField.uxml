@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEngine.Experimental.UIElements"
+      xmlns:editor="UnityEditor.Experimental.UIElements">
+  <VisualElement name="LayerField">
+      <editor:LayerField />
+  </VisualElement>
+</UXML>

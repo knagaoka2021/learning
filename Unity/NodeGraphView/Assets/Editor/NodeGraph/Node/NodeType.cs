@@ -7,15 +7,21 @@ namespace NodeUtility {
     public enum NODE {
         ROOT,
         COMPOSITE,
+        SELECTOR,
+        SEQUENCE,
         ACTION
     }
     public static class NodeType {
         public static Type GetNodeTypeClass (NODE type) {
             switch (type) {
                 case NODE.ROOT:
-                    break;
+                    return typeof (RootNode);
                 case NODE.COMPOSITE:
                     return typeof (CompositeNode);
+                case NODE.SELECTOR:
+                    return typeof (SelectorNode);
+                case NODE.SEQUENCE:
+                    return typeof (SequenceNode);
                 case NODE.ACTION:
                     return typeof (ActionNode);
             }

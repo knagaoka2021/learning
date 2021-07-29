@@ -2,3 +2,9 @@
     background-color: rgb(100, 0, 0);
     -unity-font-style: bold;
    }
+#node-border {
+    background-color: rgb(192, 30, 30);
+}
+Label{
+    -unity-font-style: bold;
+}

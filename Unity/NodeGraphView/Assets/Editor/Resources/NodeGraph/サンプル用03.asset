@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48778ab60eec3c643a8c30ce5758c9ad, type: 3}
+  m_Name: "\u30B5\u30F3\u30D7\u30EB\u752803"
+  m_EditorClassIdentifier: 
+  nodeGraph:
+    edges:
+    - outputNodeId: 1
+      inputNodeId: 2
+    - outputNodeId: 0
+      inputNodeId: 1
+    nodes:
+    - nodeId: 0
+      name: Start
+      annotation: "Sample\u752803       \nindex2 \u2192 \u6210\u529F\n\u6700\u7D42\u7D50\u679C\u306F\u6210\u529F"
+      type: 0
+      posWH:
+        serializedVersion: 2
+        x: 554
+        y: 320
+        width: 120
+        height: 125
+      behavior: 0
+      behaviorNodeData:
+        waitTime: 0
+        distance: 0
+        ratio: 0
+        conditionData:
+          status: 0
+          calculate: 0
+        detect: 0
+    - nodeId: 2
+      name: index2
+      annotation: "HP\u306E\u5272\u5408\u304C50%\u3088\u308A\u5927\u304D\u3044\u5834\u5408\u3001\u6210\u529F\r\n\u305D\u308C\u4EE5\u5916\u304C\u5931\u6557\r\n\r\n\u203B\u30C0\u30DF\u30FC\u30C7\u30FC\u30BF\r\n\u73FE\u5728HP\uFF1A51\n\u5168\u4F53HP\uFF1A100"
+      type: 4
+      posWH:
+        serializedVersion: 2
+        x: 1044
+        y: 171
+        width: 275
+        height: 503
+      behavior: 3
+      behaviorNodeData:
+        waitTime: 0
+        distance: 0
+        ratio: 50
+        conditionData:
+          status: 1
+          calculate: 6
+        detect: 0
+    - nodeId: 1
+      name: index1
+      annotation: "\u4E0B\u4F4D\u30CE\u30FC\u30C9\u304C\u9014\u4E2D\u30671\u3064\u3067\u3082\u5931\u6557\u3067\u7D42\u4E86"
+      type: 3
+      posWH:
+        serializedVersion: 2
+        x: 730
+        y: 327
+        width: 232
+        height: 97
+      behavior: 0
+      behaviorNodeData:
+        waitTime: 0
+        distance: 0
+        ratio: 0
+        conditionData:
+          status: 0
+          calculate: 0
+        detect: 0

@@ -1,0 +1,31 @@
+﻿VisualElement{
+ background-color: rgb(30, 30, 128);
+}
+IntegerField {
+    -unity-font-style: bold;
+}
+Label{
+    -unity-font-style: bold;
+}
+IntegerField Label {
+    width: 32px;
+    min-width: 68px;
+}
+IntegerInput {
+    -unity-text-align: middle-right;
+}
+Vector3Field Label {
+    width: 32px;
+    min-width: 32px;
+}
+FloatField Label {
+    width: 5px;
+    min-width: 5px;
+}
+FloatField {
+    -unity-font-style: bold;
+}
+FloatInput {
+    width: 5px;
+    -unity-text-align: middle-right;
+}

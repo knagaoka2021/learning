@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEngine.Experimental.UIElements"
+      xmlns:editor="UnityEditor.Experimental.UIElements">
+  <VisualElement name="CharacterField">
+      <Label text="====================="></Label>
+      <Foldout text="ダミーデータ(MOVE)" value="false" >
+        <editor:Vector3Field name = "PosXYZ" label= "位置:" />
+      </Foldout>
+      <Label text="====================="></Label>
+      <Foldout text="ダミーデータ(STATUS)" value="false" >
+        <editor:IntegerField name = "HP" label= "HP：" />
+        <editor:IntegerField name = "TOTALHP" label= "TotalHP：" />
+        <editor:IntegerField name = "SP" label= "SP：" />
+        <editor:IntegerField name = "STR" label= "STR：" />
+        <editor:IntegerField name = "VIT" label= "VIT：" />
+        <editor:IntegerField name = "DEX" label= "DEX：" />
+        <editor:IntegerField name = "SPD" label= "SPD：" />
+      </Foldout>
+      <Label text="====================="></Label>
+  </VisualElement>
+</UXML>

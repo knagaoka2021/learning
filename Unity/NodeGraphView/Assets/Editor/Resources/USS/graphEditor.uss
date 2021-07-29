@@ -5,7 +5,6 @@
 }
 #UiButtonArea{
     background-image: url("../Image/ui_area.jpg")
-    width: 76px;
 }
 #Save {
     top: 4px;

@@ -1,9 +1,13 @@
-﻿using UnityEditor;
+﻿using UIDesign;
+using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class GraphEditorWindow : EditorWindow {
+    private const string uxmlPath = "Assets/Editor/Resources/UXML/GraphEditor.uxml";
+    private const string ussPath = "Assets/Editor/Resources/USS/GraphEditor.uss";
+    private const string iconPath = "Assets/Editor/Resources/Image/icon.png";
     public NodeGraphViewAsset m_nodeGraphViewAsset;
     public NodeGraphView m_graphView;
     private string AssetFileName { get; set; }
@@ -11,7 +15,9 @@ public class GraphEditorWindow : EditorWindow {
     [MenuItem ("Window/Open NodeGraphView")]
     public static void Open () {
         GraphEditorWindow graphEditor = CreateInstance<GraphEditorWindow> ();
-        GetWindow<GraphEditorWindow> ("NodeGraphView");
+        var window = GetWindow<GraphEditorWindow> ();
+        var icon = AssetDatabase.LoadAssetAtPath<Texture> (iconPath);
+        window.titleContent = new GUIContent ("NodeGraphView", icon);
 
         graphEditor.Initialize ();
     }
@@ -22,9 +28,19 @@ public class GraphEditorWindow : EditorWindow {
             graphEditor.Initialize (nodeGraphViewAsset, assetFileName);
         }
 
-        GetWindow<GraphEditorWindow> ("NodeGraphView");
+        var window = GetWindow<GraphEditorWindow> ();
+        var icon = AssetDatabase.LoadAssetAtPath<Texture> ("Assets/Editor/Resources/Image/icon.png");
+        window.titleContent = new GUIContent ("NodeGraphView：" + assetFileName, icon);
     }
-    void OnEnable () { }
+    void OnEnable () {
+
+        UiContainer.CacheClear ();
+    }
+    void Update () {
+        if (m_graphView != null) {
+            m_graphView.Update ();
+        }
+    }
 
     [OnOpenAsset ()]
     static bool OnOpenAsset (int instanceID, int line) {
@@ -54,6 +70,9 @@ public class GraphEditorWindow : EditorWindow {
 
         if (!string.IsNullOrEmpty (AssetFileName)) {
             m_graphView.LoadNode ();
+        } else {
+            AssetFileName = "default";
+            m_graphView.AssetFileName = AssetFileName;
         }
         var root = rootVisualElement;
 
@@ -61,8 +80,8 @@ public class GraphEditorWindow : EditorWindow {
         root.Add (m_graphView);
 
         // UXMLファイルを読み込む
-        var visualTree = Resources.Load<VisualTreeAsset> ("UXML/graphEditor");
-        root.styleSheets.Add (Resources.Load<StyleSheet> ("USS/graphEditor"));
+        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxmlPath);
+        root.styleSheets.Add (AssetDatabase.LoadAssetAtPath<StyleSheet>(ussPath));
 
         // UXMLファイルで定義した階層構造を生成
         visualTree.CloneTree (root);

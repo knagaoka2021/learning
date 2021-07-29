@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEngine.Experimental.UIElements"
+      xmlns:editor="UnityEngine.UIElements">
+  <VisualElement name="Toggle">
+      <editor:Toggle name="toggle" label="Toggle" value="false" />
+  </VisualElement>
+</UXML>
