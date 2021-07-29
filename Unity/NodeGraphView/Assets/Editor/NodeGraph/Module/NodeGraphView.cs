@@ -299,6 +299,10 @@ public class NodeGraphView : GraphView {
 
     public override void BuildContextualMenu (ContextualMenuPopulateEvent evt) {
 
+        if (evt.target is GraphView && nodeCreationRequest != null) {
+            evt.menu.AppendAction ("Create Node", OnContextMenuNodeCreate, DropdownMenuAction.AlwaysEnabled);
+            evt.menu.AppendSeparator ();
+        }
         // 選択対象がノード
         if ((evt.target is Node)) {
             var node = evt.target as GraphNode;
@@ -316,9 +320,29 @@ public class NodeGraphView : GraphView {
                 (Func<DropdownMenuAction, DropdownMenuAction.Status>) (paste => (this.canPaste ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled)),
                 (object) null);
         }
-        // 基底のメソッド実行
-        base.BuildContextualMenu (evt);
+        if (evt.target is GraphView || evt.target is Node || evt.target is Group || evt.target is Edge) {
+            evt.menu.AppendSeparator ();
+            evt.menu.AppendAction ("Delete", (a) => { DeleteSelectionCallback (AskUser.DontAskUser); },
+                (a) => { return canDeleteSelection ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled; });
+        }
     }
+    void OnContextMenuNodeCreate (DropdownMenuAction a) {
+        RequestNodeCreation (null, -1, a.eventInfo.mousePosition);
+    }
+
+    private void RequestNodeCreation (VisualElement target, int index, Vector2 position) {
+        if (nodeCreationRequest == null)
+            return;
+
+        // Editorウィンドウ取得
+        var graphEditorWindow = Resources.FindObjectsOfTypeAll<EditorWindow> ()
+            .FirstOrDefault (window => window.GetType ().Name == "GraphEditorWindow");
+
+        Vector2 screenPoint = graphEditorWindow.position.position + position;
+
+        nodeCreationRequest (new NodeCreationContext () { screenMousePosition = screenPoint, target = target, index = index });
+    }
+
     private void CopyAction (GraphNode target) {
         if (target.NodeType == NODE.ROOT) return;
 
